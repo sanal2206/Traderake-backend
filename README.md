@@ -1,4 +1,4 @@
-
+<img width="3235" height="2222" alt="logo" src="https://github.com/user-attachments/assets/1d5e6764-fc59-4c88-a530-376213494f88" />
 # Traderake Backend
 
 This is the backend for the Traderake application built using Django and Django REST Framework with JWT authentication.
