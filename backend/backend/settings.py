@@ -3,6 +3,8 @@
 from pathlib import Path
 from decouple import config
 import dj_database_url
+from datetime import timedelta
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,7 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'rest_framework_simplejwt.token_blacklist',
-
+    'corsheaders',
 
     'accounts',
 
@@ -47,6 +49,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  #Cors orgin middleware for hadling cross orgin https request
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -152,3 +155,35 @@ REST_FRAMEWORK = {
     )
     
 }
+
+
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "BLACKLIST_AFTER_ROTATION": True,
+    "ROTATE_REFRESH_TOKENS": True,
+}
+
+
+
+# Allow specific trusted domains during development and production
+CORS_ALLOWED_ORIGINS = [
+    # React web (localhost and over network)
+     
+
+    # React Native (Expo or real device dev server)
+
+
+    # Production domains
+  
+]
+
+
+# Only enable this temporarily for testing or Postman if needed
+CORS_ALLOW_ALL_ORIGINS = True
+
+
+
+# for JWT token (Authentication Headers)
+CORS_ALLOW_CREDENTIALS = True
