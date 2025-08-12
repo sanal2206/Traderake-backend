@@ -15,6 +15,6 @@ class CustomUser(AbstractUser):
     is_deleted = models.BooleanField(default=False)
 
     def delete(self, *args, **kwargs):
-        # Override delete for soft delete
+        """Soft delete instead of physical delete."""
         self.is_deleted = True
-        self.save()
+        self.save(update_fields=["is_deleted"])
