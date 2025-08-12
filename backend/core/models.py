@@ -16,9 +16,12 @@ class Exchange(models.Model):
         return self.name or "Unknown Exchange"
 
 
+
 class Index(models.Model):
     name = models.CharField(max_length=100)
     symbol = models.CharField(max_length=20, blank=True, null=True)
+    country = models.CharField(max_length=100, blank=True, null=True)  # e.g., India, USA
+    currency = models.CharField(max_length=10, blank=True, null=True)  # e.g., INR, USD, GBP
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     is_block = models.BooleanField(default=False)
