@@ -20,6 +20,8 @@ class Exchange(models.Model):
 class Index(models.Model):
     name = models.CharField(max_length=100)
     symbol = models.CharField(max_length=20, blank=True, null=True)
+    Value=models.IntegerField(blank=True,null=True)
+    change=models.IntegerField(blank=True,null=True)
     country = models.CharField(max_length=100, blank=True, null=True)  # e.g., India, USA
     currency = models.CharField(max_length=10, blank=True, null=True)  # e.g., INR, USD, GBP
     created_at = models.DateTimeField(default=timezone.now)
@@ -71,9 +73,12 @@ class MutualFund(models.Model):
     name = models.CharField(max_length=150)
     category = models.CharField(max_length=100, blank=True, null=True)
     nav = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+    one_year_return = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)  # in %
+
 
     def __str__(self):
         return self.name
+
 
 
 class Watchlist(models.Model):
