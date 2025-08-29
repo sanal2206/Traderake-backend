@@ -16,7 +16,6 @@ class Exchange(models.Model):
         return self.name or "Unknown Exchange"
 
 
-
 class Index(models.Model):
     name = models.CharField(max_length=100)
     symbol = models.CharField(max_length=20, blank=True, null=True)
